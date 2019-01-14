@@ -20,3 +20,9 @@
 //   var aa=document.getElementById("hh");
 //   aa.onclick()
 // },1000)
+
+var a='{rename:2018,worday:0}'
+var b=JSON.stringify(a);
+console.log(b)
+var c=JSON.parse(b)
+console.log(typeof c)

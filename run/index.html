@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="hh">
+
+        <span>{{aa}}</span>
+        <div :class="cc=='ff'">{{dd}}</div>
+        <input v-if="isActive" type="text" placeholder="qing">
+        <input v-if="!isActive" type="text" placeholder="shuru">
+        <button @click="change">点击</button>
+
+    </div>
+    <script src="./index.js"></script>
+</body>
+<script>
+
+    var app=new Vue({
+        el:"#hh",
+        data:{
+            aa:"",
+            cc:"ff",
+            isActive:true
+        },
+        mounted() {
+            this.init()
+        },
+        methods: {
+            change(){
+                this.isActive=!this.isActive
+            },
+            init(){
+                this.aa="222"
+                // setInterval(() => {
+                // this.aa=new Date().getSeconds()
+                // }, 1000);                                                                        
+            }
+           
+        },
+        computed: {
+            dd:function(){
+                return this.aa+"66"
+            }
+        },
+
+    })
+
+</script>
+
+</html>

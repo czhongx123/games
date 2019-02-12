@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    Date.prototype.haha = function () {
+
+        var year = this.getYear();
+        var month = this.getMonth();
+        var date = this.getDate();
+        var hour = this.getHours();
+        console.log(this.getDay())
+        if (this.getDay() == 6) {
+            var DateFirst = new Date(year, month, 1)
+            var FirstDay = DateFirst.getDay();
+            if (Math.ceil(date / 7) % 2 == 1) {
+                if ((hour > 7) && (hour < 17)) {
+                    return true;
+                } else {
+                    return false
+                }
+            } else {
+                return false;
+            }
+        }
+        if (this.getDay() == 7) {
+            return false
+        }
+    
+    }
+
+    var a = new Date('2019-01-08');
+    // alert(a.haha());
+
+
+    console.log(new Date('2019-01-08').getDay())
+ </script> </html>

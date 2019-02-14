@@ -32,11 +32,11 @@ const matrixToolkit={
     checkFillable(matrix,n,rowIndex,colIndex){
         const row=matrix[rowIndex];//获取行数据
         const column=this.makeRow().map((v,i)=>matrix[i][colIndex]);//获取列数据
-        const { boxIndex }=boxToolkit.covertToBoxIndex(rowIndex,colIndex);
+        const { boxIndex }=boxToolkit.convertToBoxIndex(rowIndex,colIndex);
         const box=boxToolkit.getBoxCells(matrix,boxIndex);
 
         for(let i=0;i<9;i++){
-            if(row[i]==n || col[i]==n || box[i]==n){
+            if(row[i]==n || column[i]==n || box[i]==n){
                 return false;
             }
         }

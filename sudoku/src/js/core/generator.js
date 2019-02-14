@@ -35,7 +35,7 @@ module.exports= class Generator{
             return true
         }
         const row=this.matrix[rowIndex];
-        const orders=this.orders(rowIndex);
+        const orders=this.orders[rowIndex];
 
 
 

@@ -34,9 +34,9 @@ const Toolkit=require("./toolkit");
  * 处理：对matrix 行，列，宫进行检查，并填写marks
  * 输出：检查是否成功，marks
  */
-class Checker {
+module.exports = class Checker {
     constructor(matrix){
-        this.matrix=matrix;
+        this._matrix=matrix;
         this._matrixMarks=Toolkit.matrix.makeMatrix(true);
     }
 
@@ -91,7 +91,7 @@ class Checker {
 
     checkBoxes(){
         for (let boxIndex = 0; boxIndex < 9; boxIndex++) {
-            const boxes=Toolkit.box.getBoxCells(boxIndex);
+            const boxes=Toolkit.box.getBoxCells(this._matrix,boxIndex);
             const marks=checkArray(boxes);
             for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
                 if(!marks[cellIndex]){

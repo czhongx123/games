@@ -59,6 +59,30 @@ body{
             &:last-child{
                 border-right-width: 2px;
             }
+            &.fixed{
+                background:#eee;
+            }
+            &.empty{
+                color:white;
+            }
+            &.error{
+                background:lightpink;
+                &.empty{
+                    color:lightpink;
+                }
+            }
+            &.mark1{
+                background: lightblue;
+                &.empty{
+                    color:lightblue;
+                }
+            }
+            &.mark2{
+                background: lightgreen;
+                &.empty{
+                    color:lightgreen;
+                }
+            }
         }
         
         
@@ -81,6 +105,27 @@ body{
     }
     
 }
+
+
+@popupCellSize:40px;
+.popup-num{
+    // 继承container的样式
+    .container();
+    position:absolute;
+    padding-left: 0;
+
+    .row{
+        >span{
+            width: @popupCellSize;
+            height: @popupCellSize;
+            line-height: @popupCellSize;
+        }
+    }
+
+   
+}
+
+
 
 
 

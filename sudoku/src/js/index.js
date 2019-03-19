@@ -1,31 +1,32 @@
-const toolkit=require("./toolkit");
+const Grid=require("./ui/grid");
+const PopupNumbers = require('./ui/popupnumbers');
+
+const grid=new Grid($("#container"));
+grid.build();
+grid.layout();//调整宽高和样式
 
 
 
-class Grid{
-    constructor(container){
-        this._$container=container;
+const popupNumbers=new PopupNumbers($("#popupNumbers"));
+grid.bindPopup(popupNumbers)
+
+
+
+//绑定按钮
+
+$('#check').on("click",e=>{ 
+    if(grid.check()){
+        alert('成功');
     }
-    build(){
-        const matrix=toolkit.makeMatrix();
-        const rowGroupClasses=["row_g_top","row_g_middle","row_g_bottom"];
-        const colGroupClasses=["col_g_left","col_g_center","col_g_right"];
+  
+});
+$('#reset').on("click",e=>{
+    grid.reset();
+ });
+$('#clear').on("click",e=>{
+    grid.clear();
+ });
+$('#rebuild').on("click",e=>{
+    grid.rebuild();
+ });
 
-
-
-
-        const $cells=matrix.map(rowValues=>rowValues.map((cellValue,colIndex)=>{
-            return  $('<span>')
-                    .addClass(colGroupClasses[colIndex%3])
-                    .text(cellValue)
-        }));
-        const $divArray=$cells.map(($spanArray,rowIndex)=>{
-            return $('<div>')
-                    .addClass("row")
-                    .addClass(rowGroupClasses[rowIndex%3])
-                    .append($spanArray)
-        });
-        this._$container.append($divArray);
-    }
-}
-new Grid($("#container")).build();

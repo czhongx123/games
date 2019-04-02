@@ -20,14 +20,14 @@ function createrow() {
     var row=creatediv('div');
     var arr=creatcell();
     con.appendChild(row);
-if(con.firstChild==null){
-    con.appendChild(row);
-}else{
-    con.insertBefore(row,con.firstChild)//插入新行
-}
-for( var i=0;i<4;i++){
-    row.appendChild(creatediv(arr[i])); //加入黑白块
-}
+    if(con.firstChild==null){
+        con.appendChild(row);
+        }else{
+        con.insertBefore(row,con.firstChild)//插入新行
+    }
+    for( var i=0;i<4;i++){
+        row.appendChild(creatediv(arr[i])); //加入黑白块
+    }
 }
 function creatcell() {
     var temp=['space','space','space','space'];
@@ -58,6 +58,7 @@ function judge(ev){
 function move(){
     var con = $('content');
     var top = parseInt(window.getComputedStyle(con, null)['top']);//得到top值
+    console.log(top,'top');
 //对move进行判断，分三种情况
     if(speed + top > 0){
         top = 0;

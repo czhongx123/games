@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 200px;
+            width: 200px;
+            border: 1px solid #cecece;
+            position: relative;
+            /* background: url('./a.jpg'); */
+        }
+        .b1{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #eee;
+            border-radius: 50%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="b1"></div>
+    </div>
+    <script>
+        var oBox=document.getElementsByClassName('box')[0];
+        var per=document.getElementsByClassName('b1')[0];
+        var start=0;
+        // setInterval(function(){
+        //     start++;
+        //     oBox.style.backgroundPositionY=start+"px";
+        // },50)
+
+        var j=per.offsetTop;//获取元素到顶部的距离
+        var k=per.offsetLeft;//获取元素到左侧的距离
+        
+
+        console.log(j,k);
+
+        //JS判断键盘上的上下左右键
+        document.onkeydown=function(event){
+            var e = event || window.event;
+
+
+            if(e && e.keyCode==38){//上
+           
+                per.style.top=(j-10)+"px";
+                
+            }
+            if(e && e.keyCode==37){//左
+                console.log('37=左键');
+                per.style.left=(k-10)+"px";
+            }
+
+
+            if(e && e.keyCode==40){//下
+                console.log('40=下键');
+                per.style.top=(j+10)+"px";
+
+            }
+            if(e && e.keyCode==39){//右
+                console.log('39=右键');
+                per.style.left=(k+10)+"px";
+            }
+
+
+
+            console.log(j+"up",k+"down");
+        }; 
+
+
+
+
+
+    </script>
+</body>
+</html>

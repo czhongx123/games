@@ -123,12 +123,14 @@
         function makePic(){
             var pic=document.createElement('span');
             pic.className="picc";
-            pic.style.left=Math.floor(Math.random()*(oBox.clientWidth))+"px";
+            var oPicc=document.getElementsByClassName('picc');
+            console.log(pic.clientWidth,oPicc[0])
             pic.style.top=0+"px";
             oBox.appendChild(pic);
-            var oPicc=document.getElementsByClassName('picc');
             for(let i=0;i<oPicc.length;i++){
                 oPicc[i].style.top=oPicc[i].offsetTop+10+"px";
+                pic.style.left=Math.floor(Math.random()*(oBox.clientWidth-oPicc[i].clientWidth))+"px";
+
                 if(oPicc[i].offsetTop>(oBox.clientHeight-oPicc[i].clientHeight)){
                     oBox.removeChild(oPicc[i])
                 }
@@ -140,10 +142,10 @@
         var timer=setInterval(function(){
             number++;
             makePic();
-            // if(number==10){
-            //     clearInterval(timer)
-            // }
-        },1000)
+            if(number==100){
+                clearInterval(timer)
+            }
+        },50)
 
 
 

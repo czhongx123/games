@@ -23,6 +23,14 @@
 			left: calc((100%-20px)/2);
             /* 利用calc实现居中定位 */
         }
+        .picc{
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            background: red;
+            margin: 2px;
+            position:absolute;
+        }
     </style>
 </head>
 <body>
@@ -32,7 +40,9 @@
     <script>
         var oBox=document.getElementsByClassName('box')[0];
         var per=document.getElementsByClassName('b1')[0];
-        var start=0;
+
+        //背景移动
+        // var start=0;
         // setInterval(function(){
         //     start++;
         //     oBox.style.backgroundPositionY=start+"px";
@@ -86,27 +96,54 @@
 
 
         //鼠标移动控制元素移动
-        oBox.onmousemove = function(e) {
-            var evt = e || event;
-            var _x = evt.pageX - oBox.offsetLeft - per.offsetWidth / 2;
-            var _y = evt.pageY - oBox.offsetTop -per.offsetHeight / 2;
+        // oBox.onmousemove = function(e) {
+        //     var evt = e || event;
+        //     var _x = evt.pageX - oBox.offsetLeft - per.offsetWidth / 2;
+        //     var _y = evt.pageY - oBox.offsetTop -per.offsetHeight / 2;
 
-            if(_x <= 0) {
-                _x = 0;
-            }
-            if(_y <= 0) {
-                _y = 0;
-            }
-            if(_x > oBox.offsetWidth - per.offsetWidth) {
-                _x = oBox.offsetWidth - per.offsetWidth;
-            }
-            if(_y > oBox.offsetHeight - per.offsetHeight) {
-                _y = oBox.offsetHeight - per.offsetHeight
-            }
+        //     if(_x <= 0) {
+        //         _x = 0;
+        //     }
+        //     if(_y <= 0) {
+        //         _y = 0;
+        //     }
+        //     if(_x > oBox.offsetWidth - per.offsetWidth) {
+        //         _x = oBox.offsetWidth - per.offsetWidth;
+        //     }
+        //     if(_y > oBox.offsetHeight - per.offsetHeight) {
+        //         _y = oBox.offsetHeight - per.offsetHeight
+        //     }
 
-            per.style.left = _x + "px";
-            per.style.top = _y + "px";
+        //     per.style.left = _x + "px";
+        //     per.style.top = _y + "px";
+        // }
+
+
+        //随机生成元素并移动
+        function makePic(){
+            var pic=document.createElement('span');
+            pic.className="picc";
+            pic.style.left=Math.floor(Math.random()*(oBox.clientWidth))+"px";
+            pic.style.top=0+"px";
+            oBox.appendChild(pic);
+            var oPicc=document.getElementsByClassName('picc');
+            // pic.style.top=pic.offsetTop+10+10+"px";
+            console.log()
+            for(let i=0;i<oPicc.length;i++){
+                oPicc[i].style.top=oPicc[i].offsetTop+10+"px";
+            }
         }
+
+
+        var number=0;
+        var timer=setInterval(function(){
+            number++;
+            makePic();
+            if(number==6){
+                clearInterval(timer)
+            }
+        },1000)
+
 
 
     </script>

@@ -7,8 +7,8 @@
     <title>Document</title>
     <style>
         .box{
-            height: 200px;
-            width: 200px;
+            height:400px;
+            width: 400px;
             border: 1px solid #cecece;
             position: relative;
             /* background: url('./a.jpg'); */
@@ -19,10 +19,9 @@
             height: 20px;
             background: #eee;
             border-radius: 50%;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
+            bottom: 0px;
+			left: calc((100%-20px)/2);
+            /* 利用calc实现居中定位 */
         }
     </style>
 </head>
@@ -39,41 +38,50 @@
         //     oBox.style.backgroundPositionY=start+"px";
         // },50)
 
-        var j=per.offsetTop;//获取元素到顶部的距离
-        var k=per.offsetLeft;//获取元素到左侧的距离
+        
         
 
-        console.log(j,k);
+        // console.log(j,k);
 
-        //JS判断键盘上的上下左右键
+        //JS判断键盘上的上下左右键,并控制元素的移动
         document.onkeydown=function(event){
             var e = event || window.event;
+            var j=per.offsetTop;//获取元素到顶部的距离
+            var k=per.offsetLeft;//获取元素到左侧的距离
 
-
+            console.log(j,'top');
+            
             if(e && e.keyCode==38){//上
-           
                 per.style.top=(j-10)+"px";
+                if(j<per.clientHeight/2){
+                    per.style.top=0+"px";
+                    return
+                }
                 
             }
             if(e && e.keyCode==37){//左
-                console.log('37=左键');
                 per.style.left=(k-10)+"px";
+                if(k<per.clientWidth/2){
+                    per.style.left=0+"px";
+                    return
+                }
             }
-
-
             if(e && e.keyCode==40){//下
-                console.log('40=下键');
                 per.style.top=(j+10)+"px";
+                if(j>=(oBox.clientHeight-per.clientHeight)){
+                    per.style.top=(oBox.clientHeight-per.clientHeight)+"px";
+                    return
+                }
 
             }
             if(e && e.keyCode==39){//右
-                console.log('39=右键');
                 per.style.left=(k+10)+"px";
+                if(k>=(oBox.clientWidth-per.clientWidth)){
+                    per.style.left=(oBox.clientWidth-per.clientWidth)+"px";
+                    return
+                }
             }
-
-
-
-            console.log(j+"up",k+"down");
+           
         }; 
 
 
